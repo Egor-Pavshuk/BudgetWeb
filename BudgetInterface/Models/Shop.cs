@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BudgetBll.Models
+namespace BudgetInterface.Models
 {
-    internal class Shop
+    public class Shop
     {
         public int ShopId { get; set; }        
         public string? Name { get; set; }

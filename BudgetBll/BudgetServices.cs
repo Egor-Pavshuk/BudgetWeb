@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BudgetWeb.Models;
 using BudgetBll.DbContextBll;
-using BudgetBll.Models;
+using BudgetInterface.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace BudgetBll
 {
@@ -17,39 +17,17 @@ namespace BudgetBll
         {
             _context = new BudgetContext();
         }
-        public async void AddNewLog(LogEntryView logEntry)
+        public async void AddNewLog(LogEntry logEntry)
         {
-            var logEntryBll = new LogEntry()
-            {
-                Date = logEntry.Date,
-                Shop = new Shop() { Name = logEntry.Shop },
-                Description = logEntry.Description,
-                PersonWhoPaid = new PersonWhoPaid() { Name = logEntry.PersonWhoPaid },
-                IsPaid = logEntry.IsPaid
-            };
-
-            await _context.LogsEntrie.AddAsync(logEntryBll);
+            await _context.LogsEntrie.AddAsync(logEntry);
             await _context.SaveChangesAsync();
         }
 
-        public async Task <List<LogEntryView>> GetAllLogs()
+        public async Task <List<LogEntry>> GetAllLogs() => await _context.LogsEntrie.Include(_ => _.Shop).Include(_ => _.PersonWhoPaid).ToListAsync();
+        
+        public async Task<List<LogEntry>> GetLogsByDate(DateTime startDate, DateTime endDate)
         {
-            var logsEntryBll = await _context.LogsEntrie.Include(_ => _.Shop).Include(_ => _.PersonWhoPaid).ToListAsync();
-            var logsEntryView = new List<LogEntryView>();
-            foreach (var log in logsEntryBll)
-            {
-                logsEntryView.Add(new LogEntryView()
-                {
-                    Date = log.Date,
-                    Shop = log.Shop.Name,
-                    Description = log.Description,
-                    Bill = log.Bill,
-                    PersonWhoPaid = log.PersonWhoPaid.Name,
-                    IsPaid = log.IsPaid
-                });
-                
-            }
-            return logsEntryView;
+           return await _context.LogsEntrie.Where(log => (log.Date >= startDate) &&  (log.Date <= endDate)).Include(_ => _.Shop).Include(_ => _.PersonWhoPaid).ToListAsync();
         }
     }
 }

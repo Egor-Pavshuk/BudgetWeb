@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BudgetInterface\BudgetInterface.csproj" />
-    <ProjectReference Include="..\BudgetWeb\BudgetWeb.csproj" />
   </ItemGroup>
 
 </Project>

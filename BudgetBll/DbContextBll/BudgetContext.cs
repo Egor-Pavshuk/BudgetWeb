@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BudgetBll.Models;
+using BudgetInterface.Models;
 
 
 namespace BudgetBll.DbContextBll

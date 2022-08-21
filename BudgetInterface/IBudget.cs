@@ -1,6 +1,7 @@
-﻿using BudgetWeb.Models;
+﻿using BudgetInterface.Models;
 public interface IBudget
 {
-    Task<List<LogEntryView>> GetAllLogs();
-    void AddNewLog(LogEntryView logEntry);
+    Task<List<LogEntry>> GetAllLogs();
+    void AddNewLog(LogEntry logEntry);
+    Task<List<LogEntry>> GetLogsByDate(DateTime startDate, DateTime endDate);
 }

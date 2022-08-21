@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BudgetBll.Models
+namespace BudgetInterface.Models
 {
-    internal class PersonWhoPaid
+    public class PersonWhoPaid
     {
         public int PersonWhoPaidId { get; set; }
         public string? Name { get; set; }

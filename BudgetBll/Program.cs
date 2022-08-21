@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BudgetBll.DbContextBll;
-using BudgetBll.Models;
+using BudgetInterface.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
