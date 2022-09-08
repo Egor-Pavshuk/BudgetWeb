@@ -24,5 +24,16 @@ namespace BudgetBll
             .Include(_ => _.Shop)
             .Include(_ => _.PersonWhoPaid)
             .ToListAsync();
+        public async void RemoveById(int id) 
+        {
+            var log = await _context.LogsEntrie.FindAsync(id);
+            if (log is null)
+            {
+                throw new Exception($"Entity {typeof(LogEntry).Name} with id = {id} doesn`t exist.");
+            }
+            _context.LogsEntrie.Remove(log);
+            await _context.SaveChangesAsync();
+        }
+        
     }
 }

@@ -11,6 +11,7 @@
         public int PersonWhoPaidId { get; set; }
         public PersonWhoPaid? PersonWhoPaid { get; set; }
         public bool IsPaid { get; set; }
+              
     }
 }
 
