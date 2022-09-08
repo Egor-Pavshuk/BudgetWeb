@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BudgetWeb.Models.LogEntryView>
+
+@{
+    ViewData["Title"] = "AllLogs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Logs</h1>
+
+<p>
+    <a class="btn btn-primary" asp-controller="Logs" asp-action="LogForm">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonWhoPaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsPaid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shop)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bill)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonWhoPaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsPaid)
+            </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-info"}) |
+                    @Html.ActionLink("Delete", "RemoveLog", "Logs", new { id = item.Id/* id=item.PrimaryKey */ }, new { @class = "btn btn-danger"})
+                </td>
+            </tr>
+}
+    </tbody>
+</table>
