@@ -1,6 +1,6 @@
-﻿namespace BudgetBll.Models
+﻿namespace BudgetInterface.Models
 {
-    internal class LogEntry
+    public class LogEntry
     {
         public int LogEntryId { get; set; }
         public DateTime Date { get; set; }
@@ -11,6 +11,7 @@
         public int PersonWhoPaidId { get; set; }
         public PersonWhoPaid? PersonWhoPaid { get; set; }
         public bool IsPaid { get; set; }
+              
     }
 }
 

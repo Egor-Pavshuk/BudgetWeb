@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BudgetBll.DbContextBll;
-using BudgetBll.Models;
+using BudgetInterface.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,10 +45,10 @@ namespace BudgetBll
             //budgetContext.SaveChanges();
 
 
-            var log = budgetContext.LogsEntrie.Include(l => l.PersonWhoPaid).Include(l => l.Shop).ToList()[0];
-            Console.WriteLine($"date = {log.Date}, shop = {log.Shop.Name}, person = {log.PersonWhoPaid.Name}, bill = {log.Bill}");
-            log = budgetContext.LogsEntrie.Include(l => l.PersonWhoPaid).Include(l => l.Shop).ToList()[1];
-            Console.WriteLine($"date = {log.Date}, shop = {log.Shop.Name}, person = {log.PersonWhoPaid.Name}, bill = {log.Bill}");
+            //var log = budgetContext.LogsEntrie.Include(l => l.PersonWhoPaid).Include(l => l.Shop).ToList()[0];
+            //Console.WriteLine($"date = {log.Date}, shop = {log.Shop.Name}, person = {log.PersonWhoPaid.Name}, bill = {log.Bill}");
+            //log = budgetContext.LogsEntrie.Include(l => l.PersonWhoPaid).Include(l => l.Shop).ToList()[1];
+            //Console.WriteLine($"date = {log.Date}, shop = {log.Shop.Name}, person = {log.PersonWhoPaid.Name}, bill = {log.Bill}");
 
             Console.ReadKey();
             
