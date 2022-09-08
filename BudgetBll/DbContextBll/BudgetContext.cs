@@ -27,7 +27,7 @@ namespace BudgetBll.DbContextBll
         public BudgetContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<BudgetContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5050; Database=budgetDb;Username=postgres;Password=Egor1324");
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432; Database=budgetDb;Username=postgres;Password=Egor1324");
 
             return new BudgetContext(optionsBuilder.Options);
         }
