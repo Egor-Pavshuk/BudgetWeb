@@ -1,6 +1,7 @@
 ﻿using BudgetInterface.Models;
 using BudgetWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace BudgetWeb.Controllers
 {
@@ -25,6 +26,7 @@ namespace BudgetWeb.Controllers
                 {
                     logsView.Add(new LogEntryView()
                     {
+                        Id = log.LogEntryId,
                         Date = log.Date,
                         Shop = log.Shop.Name,
                         Description = log.Description,
@@ -50,6 +52,7 @@ namespace BudgetWeb.Controllers
                 {
                     logsView.Add(new LogEntryView()
                     {
+                        Id = log.LogEntryId,
                         Date = log.Date,
                         Shop = log.Shop.Name,
                         Description = log.Description,
@@ -63,8 +66,14 @@ namespace BudgetWeb.Controllers
             return View(logsView);
         }
 
+        [HttpGet]
+        public ActionResult LogForm()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public ActionResult Logs(LogEntryView logEntryView)
+        public ActionResult CreateLog(LogEntryView logEntryView)
         {
             if (!ModelState.IsValid)
             {
@@ -73,14 +82,22 @@ namespace BudgetWeb.Controllers
 
             var logEntryBll = new LogEntry()
             {
-                Date = logEntryView.Date,
+                Date = logEntryView.Date.ToUniversalTime(),
                 Shop = new Shop() { Name = logEntryView.Shop },
                 Description = logEntryView.Description,
                 PersonWhoPaid = new PersonWhoPaid() { Name = logEntryView.PersonWhoPaid },
+                Bill = logEntryView.Bill,
                 IsPaid = logEntryView.IsPaid
             };
             _budget.AddNewLog(logEntryBll);
 
+            return Redirect("~/Logs/Logs");
+        }
+
+        
+        public ActionResult RemoveLog(int id)
+        {
+            _budget.RemoveById(id);
             return Redirect("~/Logs/Logs");
         }
 

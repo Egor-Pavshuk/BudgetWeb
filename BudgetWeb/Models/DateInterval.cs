@@ -6,7 +6,7 @@
         public DateTime EndDate { get; set; }
         public DateInterval()
         {
-            StartDate = DateTime.Now.Subtract(TimeSpan.FromDays(5));
+            StartDate = DateTime.Now.Subtract(TimeSpan.FromDays(7));
             EndDate = DateTime.Now;
         }
         public DateInterval(DateTime startDate, DateTime endDate)
