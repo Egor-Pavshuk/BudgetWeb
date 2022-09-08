@@ -1,9 +1,12 @@
+using BudgetBll;
+using BudgetBll.DbContextBll;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
-//builder.Services.AddTransient<IBudget, BudgetServices>();
+builder.Services.AddTransient<IBudget, BudgetServices>();
 var app = builder.Build();
 
 

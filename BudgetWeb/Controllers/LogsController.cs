@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using BudgetInterface.Models;
 using BudgetWeb.Models;
-using BudgetInterface.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetWeb.Controllers
 {
@@ -22,15 +21,18 @@ namespace BudgetWeb.Controllers
 
             foreach (var log in logsBll)
             {
-                logsView.Add(new LogEntryView()
+                if (log != null)
                 {
-                    Date = log.Date,
-                    Shop = log.Shop.Name,
-                    Description = log.Description,
-                    Bill = log.Bill,
-                    PersonWhoPaid = log.PersonWhoPaid.Name,
-                    IsPaid = log.IsPaid
-                });
+                    logsView.Add(new LogEntryView()
+                    {
+                        Date = log.Date,
+                        Shop = log.Shop.Name,
+                        Description = log.Description,
+                        Bill = log.Bill,
+                        PersonWhoPaid = log.PersonWhoPaid.Name,
+                        IsPaid = log.IsPaid
+                    });
+                }
             }
 
             return View(logsView);
@@ -44,15 +46,18 @@ namespace BudgetWeb.Controllers
 
             foreach (var log in logsBll)
             {
-                logsView.Add(new LogEntryView()
+                if (log != null)
                 {
-                    Date = log.Date,
-                    Shop = log.Shop.Name,
-                    Description = log.Description,
-                    Bill = log.Bill,
-                    PersonWhoPaid = log.PersonWhoPaid.Name,
-                    IsPaid = log.IsPaid
-                });
+                    logsView.Add(new LogEntryView()
+                    {
+                        Date = log.Date,
+                        Shop = log.Shop.Name,
+                        Description = log.Description,
+                        Bill = log.Bill,
+                        PersonWhoPaid = log.PersonWhoPaid.Name,
+                        IsPaid = log.IsPaid
+                    });
+                }
             }
 
             return View(logsView);
@@ -76,7 +81,7 @@ namespace BudgetWeb.Controllers
             };
             _budget.AddNewLog(logEntryBll);
 
-            return View();
+            return Redirect("~/Logs/Logs");
         }
 
         //// GET: LogsController/Details/5
